@@ -8,13 +8,19 @@
 
   <!-- COVER -->
   <div class="cover">
+    <div class="cover-accent"></div>
     <h1>{{ catalog_title }}</h1>
     <p class="subtitle">{{ generated_date }}</p>
-    <p class="stats">{{ movies|length }} Movies &bull; {{ shows|length }} TV Shows</p>
+    <div class="cover-rule"></div>
+    <p class="stats"><strong>{{ movies|length }}</strong> Movies &middot; <strong>{{ shows|length }}</strong> TV Shows</p>
   </div>
 
   <!-- MOVIES -->
-  <div class="section-divider"><h2>Movies</h2><p>{{ movies|length }} titles</p></div>
+  <div class="section-divider">
+    <div class="divider-accent"></div>
+    <h2>Movies</h2>
+    <p class="count">{{ movies|length }} titles</p>
+  </div>
 
   <table class="card-grid">
     {% for movie in movies %}
@@ -29,10 +35,10 @@
             {% endif %}
           </div>
           <div class="card-info">
-            <h3>{{ movie.title }}</h3>
-            <p class="meta">{{ movie.year or '' }} &bull; {{ movie.content_rating }}</p>
-            <p class="genres">{{ movie.genres | join(', ') }}</p>
-            {% if movie.duration_minutes %}<p class="runtime">{{ movie.duration_minutes }} min</p>{% endif %}
+            <div class="card-title">{{ movie.title }}</div>
+            <p class="card-meta">{{ movie.year or '' }} &nbsp; <span class="card-rating">{{ movie.content_rating }}</span></p>
+            <p class="card-genres">{{ movie.genres | join(' · ') }}</p>
+            {% if movie.duration_minutes %}<p class="card-detail">{{ movie.duration_minutes }} min</p>{% endif %}
           </div>
         </div>
       </td>
@@ -41,7 +47,11 @@
   </table>
 
   <!-- TV SHOWS -->
-  <div class="section-divider"><h2>TV Shows</h2><p>{{ shows|length }} titles</p></div>
+  <div class="section-divider">
+    <div class="divider-accent"></div>
+    <h2>TV Shows</h2>
+    <p class="count">{{ shows|length }} titles</p>
+  </div>
 
   <table class="card-grid">
     {% for show in shows %}
@@ -56,10 +66,10 @@
             {% endif %}
           </div>
           <div class="card-info">
-            <h3>{{ show.title }}</h3>
-            <p class="meta">{{ show.year or '' }} &bull; {{ show.content_rating }}</p>
-            <p class="genres">{{ show.genres | join(', ') }}</p>
-            <p class="seasons">{{ show.season_count }} season{{ 's' if show.season_count != 1 else '' }} &bull; {{ show.episode_count }} episodes</p>
+            <div class="card-title">{{ show.title }}</div>
+            <p class="card-meta">{{ show.year or '' }} &nbsp; <span class="card-rating">{{ show.content_rating }}</span></p>
+            <p class="card-genres">{{ show.genres | join(' · ') }}</p>
+            <p class="card-detail">{{ show.season_count }} season{{ 's' if show.season_count != 1 else '' }} &bull; {{ show.episode_count }} episodes</p>
           </div>
         </div>
       </td>
