@@ -1,9 +1,47 @@
+/* ── Fonts ── */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'General Sans';
+  src: url('../fonts/GeneralSans-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'General Sans';
+  src: url('../fonts/GeneralSans-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'General Sans';
+  src: url('../fonts/GeneralSans-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
 @page {
   size: Letter;
   margin: 0.75in 0.6in 0.8in 1in;
   @bottom-center {
     content: "— " counter(page) " —";
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'General Sans', 'Helvetica Neue', sans-serif;
     font-size: 7pt;
     color: #c0c0c0;
     letter-spacing: 2pt;
@@ -14,7 +52,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'General Sans', 'Helvetica Neue', sans-serif;
   font-size: 9.5pt;
   line-height: 1.4;
   color: #2c2c2c;
@@ -23,21 +61,18 @@ body {
 /* ── Cover ── */
 .cover {
   page-break-after: always;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   text-align: center;
+  padding-top: 250pt;
 }
 .cover-accent {
   width: 28pt;
   height: 0.75pt;
   background: #b8973f;
-  margin-bottom: 40pt;
+  margin: 0 auto 40pt;
 }
 .cover h1 {
-  font-size: 16pt;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18pt;
   font-weight: 300;
   color: #1a1a1a;
   letter-spacing: 4pt;
@@ -56,7 +91,7 @@ body {
   width: 100pt;
   height: 0.25pt;
   background: #d8d8d8;
-  margin: 0 0 48pt;
+  margin: 0 auto 48pt;
 }
 .cover .stats {
   font-size: 8pt;
@@ -66,7 +101,7 @@ body {
   text-transform: uppercase;
 }
 .cover .stats strong {
-  font-weight: 600;
+  font-weight: 500;
   color: #b8973f;
 }
 
@@ -74,21 +109,18 @@ body {
 .section-divider {
   page-break-before: always;
   page-break-after: always;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   text-align: center;
+  padding-top: 300pt;
 }
 .section-divider .divider-accent {
   width: 22pt;
   height: 0.75pt;
   background: #b8973f;
-  margin-bottom: 28pt;
+  margin: 0 auto 28pt;
 }
 .section-divider h2 {
-  font-size: 14pt;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 16pt;
   font-weight: 300;
   color: #1a1a1a;
   letter-spacing: 5pt;
@@ -131,6 +163,17 @@ body {
   background: #f0f0f0;
   box-shadow: 0 1pt 5pt rgba(0,0,0,0.10),
               0 0.5pt 2pt rgba(0,0,0,0.05);
+  position: relative;
+}
+.card-poster::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1pt solid rgba(0,0,0,0.15);
+  border-radius: 3pt;
 }
 .card-poster img {
   width: 100%;
@@ -159,7 +202,8 @@ body {
   padding: 0 2pt;
 }
 .card-title {
-  font-size: 9.5pt;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 10.5pt;
   font-weight: 600;
   color: #1a1a1a;
   margin-bottom: 2pt;
@@ -177,7 +221,7 @@ body {
 .card-rating {
   display: inline-block;
   font-size: 6pt;
-  font-weight: 600;
+  font-weight: 500;
   color: #aaa;
   border: 0.5pt solid #d5d5d5;
   border-radius: 2pt;

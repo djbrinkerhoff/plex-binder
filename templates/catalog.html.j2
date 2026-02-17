@@ -69,7 +69,7 @@
             <div class="card-title">{{ show.title }}</div>
             <p class="card-meta">{{ show.year or '' }} &nbsp; <span class="card-rating">{{ show.content_rating }}</span></p>
             <p class="card-genres">{{ show.genres | join(' · ') }}</p>
-            <p class="card-detail">{{ show.season_count }} season{{ 's' if show.season_count != 1 else '' }} &bull; {{ show.episode_count }} episodes</p>
+            <p class="card-detail">{{ show.season_count }} season{{ 's' if show.season_count != 1 else '' }} &middot; {{ show.episode_count }} episodes</p>
           </div>
         </div>
       </td>

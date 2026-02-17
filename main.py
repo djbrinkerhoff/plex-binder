@@ -16,6 +16,7 @@ from jinja2 import Environment, FileSystemLoader
 from PIL import Image
 from plexapi.server import PlexServer
 from weasyprint import CSS, HTML
+from weasyprint.text.fonts import FontConfiguration
 
 BASE_DIR = Path(__file__).resolve().parent
 POSTER_DIR = BASE_DIR / "posters"
@@ -156,13 +157,15 @@ def generate_pdf(
         movies=movies,
         shows=shows,
         catalog_title=title,
-        generated_date=date.today().strftime("%B %d, %Y"),
+        generated_date=date.today().strftime("%Y"),
     )
 
-    css = CSS(filename=TEMPLATE_DIR / "catalog.css")
+    font_config = FontConfiguration()
+    css = CSS(filename=TEMPLATE_DIR / "catalog.css", font_config=font_config)
     HTML(string=html_str, base_url=str(BASE_DIR)).write_pdf(
         target=str(output_path),
         stylesheets=[css],
+        font_config=font_config,
         optimize_images=True,
         jpeg_quality=85,
         dpi=150,
@@ -185,7 +188,7 @@ def main() -> None:
         help="Plex auth token (or set PLEX_TOKEN)",
     )
     parser.add_argument(
-        "--title", default="Our Movie & TV Library", help="Catalog title"
+        "--title", default="Movie & TV Library", help="Catalog title"
     )
     parser.add_argument(
         "--output", default="output/catalog.pdf", help="Output PDF path"
