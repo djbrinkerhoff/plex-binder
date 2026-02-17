@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Generate a printable PDF catalog from a Plex Media Server library."""
 
+from __future__ import annotations
+
 import argparse
 import os
 import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 

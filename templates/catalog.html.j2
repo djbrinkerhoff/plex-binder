@@ -16,48 +16,56 @@
   <!-- MOVIES -->
   <div class="section-divider"><h2>Movies</h2><p>{{ movies|length }} titles</p></div>
 
-  <div class="card-grid">
+  <table class="card-grid">
     {% for movie in movies %}
-    <div class="card">
-      <div class="card-poster">
-        {% if movie.poster_path %}
-        <img src="file://{{ movie.poster_path }}" alt="{{ movie.title }}">
-        {% else %}
-        <div class="no-poster"><span>{{ movie.title }}</span></div>
-        {% endif %}
-      </div>
-      <div class="card-info">
-        <h3>{{ movie.title }}</h3>
-        <p class="meta">{{ movie.year or '' }} &bull; {{ movie.content_rating }}</p>
-        <p class="genres">{{ movie.genres | join(', ') }}</p>
-        {% if movie.duration_minutes %}<p class="runtime">{{ movie.duration_minutes }} min</p>{% endif %}
-      </div>
-    </div>
+    {% if loop.index is odd %}<tr>{% endif %}
+      <td>
+        <div class="card">
+          <div class="card-poster">
+            {% if movie.poster_path %}
+            <img src="file://{{ movie.poster_path }}" alt="{{ movie.title }}">
+            {% else %}
+            <div class="no-poster"><span>{{ movie.title }}</span></div>
+            {% endif %}
+          </div>
+          <div class="card-info">
+            <h3>{{ movie.title }}</h3>
+            <p class="meta">{{ movie.year or '' }} &bull; {{ movie.content_rating }}</p>
+            <p class="genres">{{ movie.genres | join(', ') }}</p>
+            {% if movie.duration_minutes %}<p class="runtime">{{ movie.duration_minutes }} min</p>{% endif %}
+          </div>
+        </div>
+      </td>
+    {% if loop.index is even or loop.last %}</tr>{% endif %}
     {% endfor %}
-  </div>
+  </table>
 
   <!-- TV SHOWS -->
   <div class="section-divider"><h2>TV Shows</h2><p>{{ shows|length }} titles</p></div>
 
-  <div class="card-grid">
+  <table class="card-grid">
     {% for show in shows %}
-    <div class="card">
-      <div class="card-poster">
-        {% if show.poster_path %}
-        <img src="file://{{ show.poster_path }}" alt="{{ show.title }}">
-        {% else %}
-        <div class="no-poster"><span>{{ show.title }}</span></div>
-        {% endif %}
-      </div>
-      <div class="card-info">
-        <h3>{{ show.title }}</h3>
-        <p class="meta">{{ show.year or '' }} &bull; {{ show.content_rating }}</p>
-        <p class="genres">{{ show.genres | join(', ') }}</p>
-        <p class="seasons">{{ show.season_count }} season{{ 's' if show.season_count != 1 else '' }} &bull; {{ show.episode_count }} episodes</p>
-      </div>
-    </div>
+    {% if loop.index is odd %}<tr>{% endif %}
+      <td>
+        <div class="card">
+          <div class="card-poster">
+            {% if show.poster_path %}
+            <img src="file://{{ show.poster_path }}" alt="{{ show.title }}">
+            {% else %}
+            <div class="no-poster"><span>{{ show.title }}</span></div>
+            {% endif %}
+          </div>
+          <div class="card-info">
+            <h3>{{ show.title }}</h3>
+            <p class="meta">{{ show.year or '' }} &bull; {{ show.content_rating }}</p>
+            <p class="genres">{{ show.genres | join(', ') }}</p>
+            <p class="seasons">{{ show.season_count }} season{{ 's' if show.season_count != 1 else '' }} &bull; {{ show.episode_count }} episodes</p>
+          </div>
+        </div>
+      </td>
+    {% if loop.index is even or loop.last %}</tr>{% endif %}
     {% endfor %}
-  </div>
+  </table>
 
 </body>
 </html>
